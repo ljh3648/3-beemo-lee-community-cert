@@ -1,11 +1,8 @@
 FROM certbot/dns-cloudflare:v5.1.0
 
-WORKDIR /work
+WORKDIR /app
 
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+COPY entrypoint.sh ./
+RUN chmod +x entrypoint.sh
 
-ENTRYPOINT ["/entrypoint.sh"]
-# RUN ["/entrypoint.sh"]
-
-# ENTRYPOINT ["/bin/sh"]
+ENTRYPOINT ["entrypoint.sh"]
