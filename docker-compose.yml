@@ -1,0 +1,14 @@
+services:
+  certbot-renewer:
+    build: .
+    env_file: .env
+    volumes:
+      - ./work:/work
+      - ./etc/letsencrypt:/etc/letsencrypt
+    networks:
+      - community-network
+    # restart: always
+
+networks:
+  community-network:
+    external: true
