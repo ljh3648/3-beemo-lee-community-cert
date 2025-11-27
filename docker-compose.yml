@@ -1,14 +1,10 @@
 services:
-  certbot-renewer:
-    build: .
-    env_file: .env
+  ssl-certbot:
+    build: . ${DOCKER_IMG_ORG}/${DOCKER_IMG_NAME}:${DOCKER_IMG_TAG:-latest}
+    image: ${DOCKER_IMG_ORG}/${DOCKER_IMG_NAME}:${DOCKER_IMG_TAG:-latest}
     volumes:
-      - ./work:/work
-      - ./etc/letsencrypt:/etc/letsencrypt
-    networks:
-      - community-network
-    # restart: always
+      - ssl_data:/app
 
-networks:
-  community-network:
-    external: true
+volumes:
+  ssl_data:
+    driver: local
