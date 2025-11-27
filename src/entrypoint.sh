@@ -67,6 +67,11 @@ fi
 while true; do
 	echo "loop..."
 	certbot renew \
-		--config-dir /app/letsencrypt
+		--config-dir /app/letsencrypt \
+		--work-dir /app/letsencrypt/work \
+		--logs-dir /app/letsencrypt/logs \
+		--dns-cloudflare-credentials /app/.cloudflare/cloudflare.ini \
+		--non-interactive \
+		--agree-tos
 	sleep 86400 # 24시간마다 체크
 done
