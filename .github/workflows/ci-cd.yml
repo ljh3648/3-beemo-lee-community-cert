@@ -1,15 +1,14 @@
-name: Web sever CI/CD
+name: certbot CI/CD
 
 on:
   push:
     branches:
-      - main    # 프로덕션
+      - main # 프로덕션
       - release # 스테이징
       - develop # 개발
 
 jobs:
   build-and-push-image:
-    needs: test
     runs-on: ubuntu-latest
     # GitHub environmnet를 프로필별로 적용
     environment: ${{ github.ref_name == 'main' && 'prod' || github.ref_name == 'release' && 'stage' || github.ref_name == 'develop' && 'dev' }}
@@ -42,7 +41,6 @@ jobs:
           echo "${{ secrets.EC2_SSH_PRIVATE_KEY }}" > ~/.ssh/ec2-ssh-private-key.pem
           chmod 600 ~/.ssh/ec2-ssh-private-key.pem
           ssh-keyscan -H ${{ vars.EC2_SERVER_HOST }} >> ~/.ssh/known_hosts
-
 
       - name: Check if Docker is installed
         id: check-docker
