@@ -7,7 +7,7 @@ services:
       - EMAIL=${EMAIL}
       - CLOUDFLARE_API_TOKEN=${CLOUDFLARE_API_TOKEN}
     volumes:
-      - ssl_data:/app
+      - ssl_data:/app/letsencrypt
 
 volumes:
   ssl_data:
