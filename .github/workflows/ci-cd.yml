@@ -85,7 +85,7 @@ jobs:
               DOCKER_IMG_TAG=${{ vars.DOCKER_IMG_TAG }} \
               HOST_PORT=${{ vars.HOST_PORT }} \
               CONTAINER_PORT=${{ vars.CONTAINER_PORT}} \
-              docker compose -f dodcker-compose-certbot down \
-              docker compose -f dodcker-compose-certbot pull \
-              docker compose -f dodcker-compose-certbot up -d
+              docker compose -f docker-compose-certbot down \
+              docker compose -f docker-compose-certbot pull \
+              docker compose -f docker-compose-certbot up -d
           EOF
