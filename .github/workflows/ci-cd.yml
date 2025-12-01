@@ -74,7 +74,7 @@ jobs:
       - name: File Copy 'docker-compose.yml'
         run: |
           ssh -i ~/.ssh/ec2-ssh-private-key.pem ${{ vars.EC2_SERVER_USER }}@${{ vars.EC2_SERVER_HOST }} "mkdir -p /home/${{ vars.EC2_SERVER_USER }}/app/cert"
-          scp -i ~/.ssh/ec2-ssh-private-key.pem docker-compose-certbot.yml ${{ vars.EC2_SERVER_USER  }}@${{ vars.EC2_SERVER_HOST }}:/home/${{ vars.EC2_SERVER_USER }}/app/cert/
+          scp -i ~/.ssh/ec2-ssh-private-key.pem docker-compose.yml ${{ vars.EC2_SERVER_USER  }}@${{ vars.EC2_SERVER_HOST }}:/home/${{ vars.EC2_SERVER_USER }}/app/cert/
 
       - name: Deploy to EC2 via Docker Compose
         run: |
@@ -86,7 +86,7 @@ jobs:
               export DOMAIN=${{ vars.DOMAIN }}
               export EMAIL=${{ vars.EMAIL }}
               export CLOUDFLARE_API_TOKEN=${{secrets.CLOUDFLARE_API_TOKEN }}
-              docker compose -f docker-compose-certbot.yml down
-              docker compose -f docker-compose-certbot.yml pull
-              docker compose -f docker-compose-certbot.yml up -d
+              docker compose down
+              docker compose pull
+              docker compose up -d
           EOF
