@@ -83,8 +83,6 @@ jobs:
               DOCKER_REG_ORG=${{ vars.DOCKER_REG_ORG }} \
               DOCKER_IMG_NAME=${{ vars.DOCKER_IMG_NAME }} \
               DOCKER_IMG_TAG=${{ vars.DOCKER_IMG_TAG }} \
-              HOST_PORT=${{ vars.HOST_PORT }} \
-              CONTAINER_PORT=${{ vars.CONTAINER_PORT}} \
               docker compose -f docker-compose-certbot.yml down \
               docker compose -f docker-compose-certbot.yml pull \
               docker compose -f docker-compose-certbot.yml up -d
