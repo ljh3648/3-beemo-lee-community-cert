@@ -35,14 +35,10 @@ echo -n "Check Let's encrypt certificate"
 if [ ! -d "/etc/letsencrypt/live/$DOMAIN" ]; then
 	LOG_FILE="/app/logs/certbot_issue.log"
 
-	mkdir -p /app/.cloudflare
 	mkdir -p /app/logs
 
-	# 로그를 파일에만 저장 (화면에 출력 안 함)
+	# certbot 표준 경로 사용
 	certbot certonly --dns-cloudflare \
-		--config-dir /app/letsencrypt \
-		--work-dir /app/letsencrypt/work \
-		--logs-dir /app/letsencrypt/logs \
 		--dns-cloudflare-credentials /app/.cloudflare/cloudflare.ini \
 		--non-interactive \
 		--agree-tos \
@@ -67,9 +63,6 @@ fi
 while true; do
 	echo "loop..."
 	certbot renew \
-		--config-dir /app/letsencrypt \
-		--work-dir /app/letsencrypt/work \
-		--logs-dir /app/letsencrypt/logs \
 		--dns-cloudflare-credentials /app/.cloudflare/cloudflare.ini \
 		--non-interactive \
 		--agree-tos
