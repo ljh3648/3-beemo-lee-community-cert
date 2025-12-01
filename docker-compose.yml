@@ -7,8 +7,12 @@ services:
       - EMAIL=${EMAIL}
       - CLOUDFLARE_API_TOKEN=${CLOUDFLARE_API_TOKEN}
     volumes:
-      - ssl_data:/app/letsencrypt
+      - ssl_data:/etc/letsencrypt
+    tmpfs:
+      - /var/lib/letsencrypt
 
 volumes:
   ssl_data:
+    name: ssl_data
     driver: local
+    
