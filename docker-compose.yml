@@ -10,6 +10,7 @@ services:
       - ssl_data:/etc/letsencrypt
     tmpfs:
       - /var/lib/letsencrypt
+    restart: always
 
 volumes:
   ssl_data:
