@@ -5,7 +5,9 @@ services:
       platforms:
         - "linux/amd64"
         - "linux/arm64"
-    image: ${DOCKER_REG_ORG}/${DOCKER_IMG_NAME}:${DOCKER_IMG_TAG:-latest}
+    image: ${DOCKER_REG_ORG}/${CERTBOT_IMG_NAME}:${CERTBOT_IMG_TAG:-latest}
+    env_file:
+      - .env
     environment:
       - DOMAIN=${DOMAIN}
       - EMAIL=${EMAIL}
@@ -20,4 +22,3 @@ volumes:
   ssl_data:
     name: ssl_data
     driver: local
-    
